@@ -19,6 +19,10 @@
   --sans-serif: 'Inter', 'Open Sans', var(--system-font);
   --body-font: var(--sans-serif);
   --heading-font: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  /* Override default WordPress theme font sizes with responsive sizing */
+  --wp--preset--font-size--medium: clamp(1rem, 0.95rem + 0.25vw, 1.05rem);
+  --wp--preset--font-size--normal: clamp(1rem, 0.95rem + 0.25vw, 1.05rem);
+  --wp--preset--font-size--base: clamp(1rem, 0.95rem + 0.25vw, 1.05rem);
 
   /* Colors */
   --color: black;
@@ -107,20 +111,112 @@ body > .is-layout-constrained {
 }
 
 /* ============ Typography ============ */
-:root {
-  /* Override default WordPress theme font sizes with responsive sizing */
-  --wp--preset--font-size--medium: clamp(1rem, 0.95rem + 0.25vw, 1.05rem);
-  --wp--preset--font-size--normal: clamp(1rem, 0.95rem + 0.25vw, 1.05rem);
-  --wp--preset--font-size--base: clamp(1rem, 0.95rem + 0.25vw, 1.05rem);
-}
-
 p, .wp-block-paragraph {
   margin-block-end: 1em;
   max-width: 65ch;
 }
 
+/* ============ WordPress Block Improvements ============ */
+
+/* Pagination Layout (theme-agnostic improvements) */
+.wp-block-query-pagination {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  justify-content: center;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 1rem 0;
+}
+
+.wp-block-query-pagination::-webkit-scrollbar {
+  display: none;
+}
+
+.wp-block-query-pagination-previous,
+.wp-block-query-pagination-next,
+.wp-block-query-pagination-numbers {
+  display: inline-block;
+  flex: 0 0 auto;
+}
+
+.wp-block-query-pagination.has-background {
+  padding: 20px 24px;
+}
+
+.wp-block-query-pagination-numbers {
+  width: 2em;
+  line-height: calc(2em - 2px);
+  height: 2em;
+  display: inline-block;
+  text-decoration: none;
+  border: 1px solid;
+  text-align: center;
+}
+
+.wp-block-query-pagination-numbers a.page-numbers:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+/* Button Block Improvements */
+.wp-block-button__link {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+/* Featured Image Improvements */
+.wp-block-post-featured-image img {
+  object-fit: cover;
+  max-height: 500px;
+}
+
 /* ============ Performance Optimizations ============ */
-/* Lazy loading hint for browsers */
 img[loading="lazy"] {
   content-visibility: auto;
+}
+
+/* ============ Common WordPress Utility Classes ============ */
+
+/* Border Radius Utilities */
+.is-style-rounded { border-radius: 0.5rem; }
+.is-style-circle { border-radius: 50%; }
+.is-style-pill { border-radius: 9999px; }
+
+/* Border Utilities */
+.is-style-outline { border: 2px solid currentColor; background: transparent; }
+.is-style-no-border { border: none; }
+
+/* Display Utilities */
+.is-style-hidden { display: none; }
+.is-style-block { display: block; }
+.is-style-inline { display: inline; }
+.is-style-flex { display: flex; }
+
+/* Image Utilities */
+.is-style-grayscale { filter: grayscale(100%); }
+.is-style-sepia { filter: sepia(100%); }
+.is-style-blur { filter: blur(4px); }
+
+/* Animation Utilities */
+.is-style-fade-in { 
+  animation: fadeIn 0.5s ease-in-out;
+}
+.is-style-slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
