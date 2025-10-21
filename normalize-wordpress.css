@@ -3,18 +3,93 @@
  * Check functions.php for the code to enqueue the stylesheets
  */
 
+/* ============ Contain Layout ============ */
+
+/* 1) Make padding part of width of all blocks */
+:root,
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2) Cap full-width blocks so they never exceed the viewport */
+.wp-site-blocks>.alignfull,
+.wp-site-blocks .alignfull {
+  max-width: 100vw;
+}
+
+/* 3) Sticky header: avoid fractional widths wider than viewport */
+.plover-is-sticky-block,
+.sticky-spacer {
+  width: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+/* 4) Optional belt-and-suspenders: clip horizontal overflow */
+html,
+body {
+  overflow-x: clip;
+  /* fall back to hidden if your browser doesn’t support clip */
+}
+
 /* ============ Root Styles & Safe Fallbacks ============ */
+
+/* 1) Make padding part of width of all blocks */
+:root,
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2) Cap full-width blocks so they never exceed the viewport */
+.wp-site-blocks>.alignfull,
+.wp-site-blocks .alignfull {
+  max-width: 100vw;
+}
+
+/* 3) Sticky header: avoid fractional widths wider than viewport */
+.plover-is-sticky-block,
+.sticky-spacer {
+  width: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+/* 4) Optional belt-and-suspenders: clip horizontal overflow */
+html,
+body {
+  overflow-x: clip;
+  /* fall back to hidden if your browser doesn’t support clip */
+}
+
 :root {
   /* Typography */
-  --system-font: 
-  /* Default System Fonts */
-    -apple-system, BlinkMacSystemFont /* Apple devices (macOS/iOS) */, 
-    "Segoe UI" /* Windows */, 
-    Roboto /* Android and Chrome OS */,
-    Oxygen-Sans /* KDE Linux */, 
-    Ubuntu /* Ubuntu Linux */, 
-    Cantarell /* GNOME Linux */, 
-    "Helvetica Neue" /* Older macOS/iOS */, 
+  --system-font:
+    /* Default System Fonts */
+    -apple-system, BlinkMacSystemFont
+    /* Apple devices (macOS/iOS) */
+    ,
+    "Segoe UI"
+    /* Windows */
+    ,
+    Roboto
+    /* Android and Chrome OS */
+    ,
+    Oxygen-Sans
+    /* KDE Linux */
+    ,
+    Ubuntu
+    /* Ubuntu Linux */
+    ,
+    Cantarell
+    /* GNOME Linux */
+    ,
+    "Helvetica Neue"
+    /* Older macOS/iOS */
+    ,
     sans-serif;
   --sans-serif: 'Inter', 'Open Sans', var(--system-font);
   --body-font: var(--sans-serif);
@@ -27,9 +102,10 @@
   /* Colors */
   --color: black;
   --background: #F7EBE4;
-  
+
   /* Spacing */
   --content-padding: clamp(1rem, 5vw, 2rem);
+  gap: 1em;
 
   /* Layout */
   --content-size: min(calc(100vw - 2 * var(--content-padding)), 720px);
@@ -47,11 +123,11 @@
 body {
   display: flex;
   flex-direction: column;
-  
+
   /* Typography */
   font-family: var(--body-font);
   font-size: clamp(1rem, 0.95rem + 0.25vw, 1.05rem);
-  
+
   /* Colors */
   color: var(--wp--preset--color--text, var(--wp--custom--color--text, var(--color)));
   background: var(--wp--preset--color--background, var(--wp--custom--color--body, var(--background)));
@@ -69,7 +145,7 @@ main {
   container-type: inline-size;
 }
 
-.site-header, 
+.site-header,
 .site-footer {
   width: 100%;
 }
@@ -86,14 +162,13 @@ main {
 }
 
 /* ============ Container Normalization ============ */
-:where(
-.wp-site-blocks,
-.site,
-#page,
-#wrapper,
-#wrap,
-#site-content,
-#page-container) {
+:where(.wp-site-blocks,
+  .site,
+  #page,
+  #wrapper,
+  #wrap,
+  #site-content,
+  #page-container) {
   width: 100%;
   margin: 0 auto;
   padding-inline: var(--content-padding);
@@ -101,17 +176,25 @@ main {
 
 /* Block theme containers */
 .wp-site-blocks,
-body > .is-layout-flow,
-body > .is-layout-constrained {
+body>.is-layout-flow,
+body>.is-layout-constrained {
   width: 100%;
-  max-width: var(--wide-size);
   margin: 0 auto;
   padding-inline: var(--content-padding);
   gap: 1em;
 }
 
+.alignfull {
+  width: 100%;
+}
+
+.alignwide {
+  max-width: var(--wide-size);
+}
+
 /* ============ Typography ============ */
-p, .wp-block-paragraph {
+p,
+.wp-block-paragraph {
   margin-block-end: 1em;
   max-width: 65ch;
 }
@@ -184,39 +267,85 @@ img[loading="lazy"] {
 /* ============ Common WordPress Utility Classes ============ */
 
 /* Border Radius Utilities */
-.is-style-rounded { border-radius: 0.5rem; }
-.is-style-circle { border-radius: 50%; }
-.is-style-pill { border-radius: 9999px; }
+.is-style-rounded {
+  border-radius: 0.5rem;
+}
+
+.is-style-circle {
+  border-radius: 50%;
+}
+
+.is-style-pill {
+  border-radius: 9999px;
+}
 
 /* Border Utilities */
-.is-style-outline { border: 2px solid currentColor; background: transparent; }
-.is-style-no-border { border: none; }
+.is-style-outline {
+  border: 2px solid currentColor;
+  background: transparent;
+}
+
+.is-style-no-border {
+  border: none;
+}
 
 /* Display Utilities */
-.is-style-hidden { display: none; }
-.is-style-block { display: block; }
-.is-style-inline { display: inline; }
-.is-style-flex { display: flex; }
+.is-style-hidden {
+  display: none;
+}
+
+.is-style-block {
+  display: block;
+}
+
+.is-style-inline {
+  display: inline;
+}
+
+.is-style-flex {
+  display: flex;
+}
 
 /* Image Utilities */
-.is-style-grayscale { filter: grayscale(100%); }
-.is-style-sepia { filter: sepia(100%); }
-.is-style-blur { filter: blur(4px); }
+.is-style-grayscale {
+  filter: grayscale(100%);
+}
+
+.is-style-sepia {
+  filter: sepia(100%);
+}
+
+.is-style-blur {
+  filter: blur(4px);
+}
 
 /* Animation Utilities */
-.is-style-fade-in { 
+.is-style-fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
+
 .is-style-slide-up {
   animation: slideUp 0.5s ease-out;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
