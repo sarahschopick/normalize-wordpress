@@ -157,19 +157,17 @@ p,
 /* Pagination Layout (theme-agnostic improvements) */
 .wp-block-query-pagination {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
   justify-content: center;
   padding: 1rem 0;
+  overflow-x: clip /* prevents horizontal scroll if content overflows */;
 }
 
 .wp-block-query-pagination::-webkit-scrollbar {
+  /* hides horizontal scrollbar on pagination if theme styles force content overflow */
   display: none;
-}
-
-.wp-block-query-pagination-numbers {
-  /* limit the number of pages shown when they do not fit on one line */
-  overflow-x: clip;
 }
 
 .wp-block-query-pagination-previous,
@@ -184,14 +182,20 @@ p,
 
 .wp-block-query-pagination-numbers {
   width: 2em;
+  height: 2em;
   line-height: 1;
   padding: 0.5em;
-  height: 2em;
   display: inline-block;
   text-decoration: none;
-  border: 1px solid currentColor;
   text-align: center;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease; 
+  border: 1px solid transparent /* Default: no visible border */; 
+}
+
+.wp-block-query-pagination-numbers.is-style-circle,
+.wp-block-query-pagination-numbers.is-style-rounded, 
+.wp-block-query-pagination-numbers.is-style-pill {
+  border-color: currentColor;
 }
 
 .wp-block-query-pagination-numbers a.page-numbers:hover,
@@ -233,7 +237,7 @@ p,
 /* Post Template Grid */
 .wp-block-post-template {
   display: grid;
-  gap: 1em;
+  gap: 1.5em;
   grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
 }
 
@@ -382,6 +386,8 @@ svg {
   position: absolute;
   top: -100%;
   left: 0;
+  background: currentColor;
+  color: Canvas; /* System background color */
   padding: 1rem;
   text-decoration: none;
   z-index: 9999;
