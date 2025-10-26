@@ -16,7 +16,7 @@
 }
 
 /* 2) Cap full-width blocks so they never exceed the viewport */
-.wp-site-blocks>.alignfull,
+.wp-site-blocks > .alignfull,
 .wp-site-blocks .alignfull {
   max-width: 100%;
 }
@@ -41,18 +41,18 @@ body {
 
 :root {
   /* Typography */
-  
-  --system-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
-  Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+  --system-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   /** Default System Fonts **/
-    /* Apple devices (macOS/iOS): -apple-system, BlinkMacSystemFont */
-    /* Windows: "Segoe UI" */
-    /* Android and Chrome OS: Roboto */
-    /* KDE Linux: Oxygen-Sans */
-    /* Ubuntu Linux: Ubuntu */
-    /* GNOME Linux: Cantarell */
-    /* Older macOS/iOS: "Helvetica Neue" */
-  
+  /* Apple devices (macOS/iOS): -apple-system, BlinkMacSystemFont */
+  /* Windows: "Segoe UI" */
+  /* Android and Chrome OS: Roboto */
+  /* KDE Linux: Oxygen-Sans */
+  /* Ubuntu Linux: Ubuntu */
+  /* GNOME Linux: Cantarell */
+  /* Older macOS/iOS: "Helvetica Neue" */
+
   /* Override default WordPress theme font sizes with responsive sizing */
   --wp--preset--font-size--base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
   --wp--preset--font-size--medium: var(--wp--preset--font-size--base);
@@ -64,7 +64,6 @@ body {
   /* Layout */
   --content-size: min(100% - 2 * var(--content-padding), 720px);
   --wide-size: min(100% - 2 * var(--content-padding), 1280px);
-
 }
 
 /* ============ Base Layout ============ */
@@ -106,13 +105,7 @@ main {
 }
 
 /* ============ Container Normalization ============ */
-:where(.wp-site-blocks,
-  .site,
-  #page,
-  #wrapper,
-  #wrap,
-  #site-content,
-  #page-container) {
+:where(.wp-site-blocks, .site, #page, #wrapper, #wrap, #site-content, #page-container) {
   width: 100%;
   max-width: var(--wide-size);
   margin-inline: auto;
@@ -121,8 +114,8 @@ main {
 
 /* Block theme containers */
 .wp-site-blocks,
-body>.is-layout-flow,
-body>.is-layout-constrained {
+body > .is-layout-flow,
+body > .is-layout-constrained {
   width: 100%;
   max-width: var(--wide-size);
   margin-inline: auto;
@@ -188,12 +181,12 @@ p,
   display: inline-block;
   text-decoration: none;
   text-align: center;
-  transition: background-color 0.2s ease; 
-  border: 1px solid transparent /* Default: no visible border */; 
+  transition: background-color 0.2s ease;
+  border: 1px solid transparent /* Default: no visible border */;
 }
 
 .wp-block-query-pagination-numbers.is-style-circle,
-.wp-block-query-pagination-numbers.is-style-rounded, 
+.wp-block-query-pagination-numbers.is-style-rounded,
 .wp-block-query-pagination-numbers.is-style-pill {
   border-color: currentColor;
 }
@@ -243,7 +236,7 @@ p,
 
 /* ============ Performance Optimizations ============ */
 img[loading="lazy"],
-iframe[loading="lazy"]{
+iframe[loading="lazy"] {
   content-visibility: auto;
 }
 
@@ -258,7 +251,8 @@ svg {
 .wp-block-group,
 .wp-block-cover {
   content-visibility: auto /* improves render performance */;
-  contain-intrinsic-size: auto 500px /* so browser can calculate scroll height */;
+  contain-intrinsic-size: auto 500px
+    /* so browser can calculate scroll height */;
 }
 
 /* Prevent layout shift with embeds */
@@ -342,12 +336,12 @@ svg {
   .is-style-blur {
     transition: filter 0.3s ease;
   }
-  
+
   .is-style-grayscale:hover {
     filter: grayscale(0%);
   }
 }
-  
+
 /* Animation Utilities */
 @media (prefers-reduced-motion: no-preference) {
   .is-style-fade-in {
